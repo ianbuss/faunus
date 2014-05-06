@@ -22,6 +22,7 @@
         <titan.version>0.4.2</titan.version>
         <slf4j.version>1.7.5</slf4j.version>
         <hadoop.version>2.2.0</hadoop.version>
+        <hbase.version>0.96.1.1</hbase.version>
     </properties>
     <developers>
         <developer>
@@ -116,6 +117,18 @@
             <artifactId>titan-es</artifactId>
             <version>${titan.version}</version>
         </dependency>
+        <!-- HBASE -->
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-server</artifactId>
+            <version>${hbase.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hadoop-core</artifactId>
+                    <groupId>org.apache.hadoop</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <!-- RDF PARSING -->
         <dependency>
             <groupId>org.openrdf.sesame</groupId>
@@ -169,10 +182,20 @@
         </dependency>
     </dependencies>
     <repositories>
-        <repository>
+       <!-- <repository>
             <id>aduna-repo</id>
             <name>Aduna repository</name>
             <url>http://repo.aduna-software.org/maven2/releases</url>
+        </repository>-->
+        <repository>
+            <id>cloudera cdh</id>
+            <url>https://repository.cloudera.com/artifactory/cloudera-repos</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
     <build>
